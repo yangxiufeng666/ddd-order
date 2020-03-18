@@ -31,7 +31,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public void save(Order order) {
         OrderDO data = orderMapper.selectByPrimaryKey(order.getId());
-        OrderDO orderDO = orderDO = OrderConverter.toOrderDO(order);
+        OrderDO orderDO = OrderConverter.toOrderDO(order);
         if (null == data){
             orderMapper.insert(orderDO);
         }else {
