@@ -1,9 +1,10 @@
-package com.ddd.order.infrastructure.repository;
+package com.ddd.order.domain.repository.impl;
 
 import com.ddd.order.domain.entity.Order;
+import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.repository.OrderRepository;
-import com.ddd.order.infrastructure.repository.converter.OrderConverter;
-import com.ddd.order.infrastructure.repository.converter.OrderItemConverter;
+import com.ddd.order.domain.converter.OrderConverter;
+import com.ddd.order.domain.converter.OrderItemConverter;
 import com.ddd.order.infrastructure.repository.dataobject.OrderDO;
 import com.ddd.order.infrastructure.repository.dataobject.OrderItemDO;
 import com.ddd.order.infrastructure.repository.mapper.OrderDOMapper;
@@ -37,7 +38,18 @@ public class OrderRepositoryImpl implements OrderRepository {
         }else {
             orderMapper.updateByPrimaryKeySelective(orderDO);
         }
-        List<OrderItemDO> items = OrderItemConverter.toOrderItemDO(order.getItems());
-        items.forEach(orderItemDO -> orderItemDOMapper.insert(orderItemDO));
+    }
+
+    @Override
+    public void saveItem(List<OrderItem> items) {
+        List<OrderItemDO> itemDOs = OrderItemConverter.toOrderItemDO(items);
+        itemDOs.forEach(orderItemDO -> orderItemDOMapper.insert(orderItemDO));
+    }
+
+    @Override
+    public Order byId(String orderId) {
+        OrderDO orderDO = orderMapper.selectByPrimaryKey(orderId);
+        Order order = OrderConverter.toOrder(orderDO);
+        return order;
     }
 }

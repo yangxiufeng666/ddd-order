@@ -16,15 +16,15 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from order
+    delete from `order`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.ddd.order.infrastructure.repository.dataobject.OrderDO">
-    insert into order (id, total_price, province, 
+    insert into `order` (id, total_price, province,
       city, detail_address, order_status, 
       create_time)
     values (#{id,jdbcType=VARCHAR}, #{totalPrice,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
@@ -32,7 +32,7 @@
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ddd.order.infrastructure.repository.dataobject.OrderDO">
-    insert into order
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -81,7 +81,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ddd.order.infrastructure.repository.dataobject.OrderDO">
-    update order
+    update `order`
     <set>
       <if test="totalPrice != null">
         total_price = #{totalPrice,jdbcType=INTEGER},
@@ -105,7 +105,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ddd.order.infrastructure.repository.dataobject.OrderDO">
-    update order
+    update `order`
     set total_price = #{totalPrice,jdbcType=INTEGER},
       province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},

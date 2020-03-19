@@ -10,17 +10,19 @@ public class OrderItem extends Entity {
     private String productId;
     private int count;
     private int itemPrice;
+    private String orderId;
 
     public OrderItem() {
     }
 
-    public OrderItem(String productId, int count, int itemPrice) {
+    public OrderItem(String productId, int count, int itemPrice, String orderId) {
         this.productId = productId;
         this.count = count;
         this.itemPrice = itemPrice;
+        this.orderId = orderId;
     }
-    public static OrderItem create(String productId, int count, int itemPrice){
-        return new OrderItem(productId, count, itemPrice);
+    public static OrderItem create(String productId, int count, int itemPrice, String orderId){
+        return new OrderItem(productId, count, itemPrice, orderId);
     }
     public int totalPrice(){
         return itemPrice * count;
@@ -36,5 +38,9 @@ public class OrderItem extends Entity {
 
     public int getItemPrice() {
         return itemPrice;
+    }
+
+    public String getOrderId() {
+        return orderId;
     }
 }

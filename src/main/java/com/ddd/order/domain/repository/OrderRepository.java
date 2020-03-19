@@ -1,6 +1,9 @@
 package com.ddd.order.domain.repository;
 
 import com.ddd.order.domain.entity.Order;
+import com.ddd.order.domain.entity.OrderItem;
+
+import java.util.List;
 
 /**
  * @author Mr.Yangxiufeng
@@ -8,4 +11,6 @@ import com.ddd.order.domain.entity.Order;
  */
 public interface OrderRepository {
     void save(Order order);
+    void saveItem(List<OrderItem> items);
+    Order byId(String orderId);
 }

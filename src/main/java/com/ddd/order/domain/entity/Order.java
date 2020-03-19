@@ -45,6 +45,11 @@ public class Order extends AggregateRoot {
         return price;
     }
 
+    public void changeAddressDetail(String detail){
+        this.address = address.changeDetailTo(detail);
+    }
+
+
     public String getId() {
         return id;
     }

@@ -3,9 +3,10 @@ package com.ddd.order.application.command;
 import com.ddd.order.application.command.cmd.CreateOrderCmd;
 import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.entity.OrderItem;
+import com.ddd.order.domain.factory.OrderFactory;
 import com.ddd.order.domain.repository.OrderRepository;
-import com.ddd.order.domain.valueobject.Address;
-import com.ddd.order.infrastructure.utils.UuidGenerator;
+import com.ddd.order.domain.service.OrderIdGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,19 +22,34 @@ public class OrderCmdService {
 
     private OrderRepository orderRepository;
 
-    public OrderCmdService(OrderRepository orderRepository) {
+    private OrderFactory orderFactory;
+
+    private OrderIdGenerator idGenerator;
+
+    public OrderCmdService(OrderRepository orderRepository, OrderFactory orderFactory) {
         this.orderRepository = orderRepository;
+        this.orderFactory = orderFactory;
+    }
+    @Autowired
+    public void setIdGenerator(OrderIdGenerator idGenerator) {
+        this.idGenerator = idGenerator;
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public String createOrder(CreateOrderCmd cmd){
+    public void createOrder(CreateOrderCmd cmd){
+        String orderId = idGenerator.generate();
         List<OrderItem> items = cmd.getItems().stream()
-                .map(item -> OrderItem.create(item.getProductId(), item.getCount(), item.getItemPrice()))
+                .map(item -> OrderItem.create(item.getProductId(), item.getCount(), item.getItemPrice(), orderId))
                 .collect(Collectors.toList());
-        String orderId = UuidGenerator.newUuid();
-        Order order = Order.create(orderId,cmd.getAddress(), items);
+        Order order = orderFactory.create(cmd.getAddress(), items);
         orderRepository.save(order);
-        return orderId;
+        orderRepository.saveItem(order.getItems());
+    }
+    @Transactional(rollbackFor = Exception.class)
+    public void changeAddressDetail(String orderId, String detail){
+        Order order = orderRepository.byId(orderId);
+        order.changeAddressDetail(detail);
+        orderRepository.save(order);
     }
 
 }

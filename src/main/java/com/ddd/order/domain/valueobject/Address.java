@@ -30,4 +30,7 @@ public class Address extends ValueObject{
     public String getDetail() {
         return detail;
     }
+    public Address changeDetailTo(String detail){
+        return new Address(this.province, this.getCity(), detail);
+    }
 }

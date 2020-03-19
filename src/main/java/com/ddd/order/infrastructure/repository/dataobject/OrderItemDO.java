@@ -5,9 +5,11 @@ public class OrderItemDO {
 
     private String productId;
 
-    private Integer count;
+    private Integer itemCount;
 
     private Integer itemPrice;
+
+    private String orderId;
 
     public Integer getId() {
         return id;
@@ -25,12 +27,12 @@ public class OrderItemDO {
         this.productId = productId == null ? null : productId.trim();
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getItemCount() {
+        return itemCount;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setItemCount(Integer itemCount) {
+        this.itemCount = itemCount;
     }
 
     public Integer getItemPrice() {
@@ -39,5 +41,13 @@ public class OrderItemDO {
 
     public void setItemPrice(Integer itemPrice) {
         this.itemPrice = itemPrice;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId == null ? null : orderId.trim();
     }
 }

@@ -1,9 +1,10 @@
-package com.ddd.order.infrastructure.repository.converter;
+package com.ddd.order.domain.converter;
 
 import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.pojo.OrderStatus;
 import com.ddd.order.domain.valueobject.Address;
 import com.ddd.order.infrastructure.repository.dataobject.OrderDO;
+import com.google.common.collect.Lists;
 
 /**
  * @author Mr.Yangxiufeng
@@ -19,7 +20,12 @@ public class OrderConverter {
         target.setCity(address.getCity());
         target.setDetailAddress(address.getDetail());
         OrderStatus orderStatus = order.getOrderStatus();
-        target.setOrderStatus(orderStatus.ordinal());
+        target.setOrderStatus(orderStatus.getOrderStatus());
         return target;
+    }
+    public static Order toOrder(OrderDO orderDO){
+        return Order.create(orderDO.getId(),
+                new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()),
+                Lists.newArrayList());
     }
 }

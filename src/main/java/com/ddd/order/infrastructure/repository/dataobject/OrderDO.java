@@ -2,6 +2,9 @@ package com.ddd.order.infrastructure.repository.dataobject;
 
 import java.util.Date;
 
+/**
+ * @author Mr.Yangxiufeng
+ */
 public class OrderDO {
     private String id;
 
