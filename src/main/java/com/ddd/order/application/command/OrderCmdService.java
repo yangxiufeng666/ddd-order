@@ -7,6 +7,7 @@ import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.factory.OrderFactory;
 import com.ddd.order.domain.repository.OrderRepository;
 import com.ddd.order.domain.service.OrderIdGenerator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
  * @date 2020-03-18 17:40
  */
 @Service
+@Slf4j
 public class OrderCmdService {
 
     private OrderRepository orderRepository;

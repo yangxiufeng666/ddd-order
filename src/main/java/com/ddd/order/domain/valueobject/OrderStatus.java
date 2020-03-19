@@ -1,4 +1,4 @@
-package com.ddd.order.domain.pojo;
+package com.ddd.order.domain.valueobject;
 
 import lombok.Getter;
 

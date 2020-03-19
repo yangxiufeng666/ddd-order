@@ -5,6 +5,7 @@ import com.ddd.order.domain.valueobject.Address;
 import com.ddd.order.infrastructure.common.Command;
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 public class CreateOrderCmd extends Command {
     @NotNull(message = "订单地址不能为空")
+    @Valid
     private Address address;
     @NotEmpty(message = "订单项不能为空")
     private List<OrderItemCmd> items;

@@ -2,6 +2,7 @@ package com.ddd.order.domain.valueobject;
 
 import com.ddd.order.infrastructure.common.ValueObject;
 
+import javax.validation.constraints.NotBlank;
 
 
 /**
@@ -9,8 +10,11 @@ import com.ddd.order.infrastructure.common.ValueObject;
  * @date 2020-03-18 15:35
  */
 public class Address extends ValueObject{
+    @NotBlank(message = "省不能为空")
     private String province;
+    @NotBlank(message = "市不能为空")
     private String city;
+    @NotBlank(message = "详细不能为空")
     private String detail;
 
     public Address(String province, String city, String detail) {

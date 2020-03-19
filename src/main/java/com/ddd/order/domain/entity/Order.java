@@ -1,7 +1,7 @@
 package com.ddd.order.domain.entity;
 
+import com.ddd.order.domain.valueobject.OrderStatus;
 import com.ddd.order.infrastructure.common.AggregateRoot;
-import com.ddd.order.domain.pojo.OrderStatus;
 import com.ddd.order.domain.valueobject.Address;
 
 import java.time.Instant;
