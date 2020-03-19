@@ -37,12 +37,9 @@ public class Order extends AggregateRoot {
         return new Order(id, address, items);
     }
     private int calculateTotalPrice(List<OrderItem> items){
-        int price=0;
-        for (OrderItem item:items
-             ) {
-            price += item.totalPrice();
-        }
-        return price;
+        return items.stream()
+                .map(OrderItem::totalPrice)
+                .reduce(0,Integer::sum);
     }
 
     public void changeAddressDetail(String detail){

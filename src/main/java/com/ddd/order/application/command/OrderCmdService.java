@@ -1,5 +1,6 @@
 package com.ddd.order.application.command;
 
+import com.ddd.order.application.command.cmd.ChangeAddressDetailCmd;
 import com.ddd.order.application.command.cmd.CreateOrderCmd;
 import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.entity.OrderItem;
@@ -41,14 +42,14 @@ public class OrderCmdService {
         List<OrderItem> items = cmd.getItems().stream()
                 .map(item -> OrderItem.create(item.getProductId(), item.getCount(), item.getItemPrice(), orderId))
                 .collect(Collectors.toList());
-        Order order = orderFactory.create(cmd.getAddress(), items);
+        Order order = Order.create(orderId, cmd.getAddress(), items);
         orderRepository.save(order);
         orderRepository.saveItem(order.getItems());
     }
     @Transactional(rollbackFor = Exception.class)
-    public void changeAddressDetail(String orderId, String detail){
+    public void changeAddressDetail(String orderId, ChangeAddressDetailCmd command){
         Order order = orderRepository.byId(orderId);
-        order.changeAddressDetail(detail);
+        order.changeAddressDetail(command.getDetail());
         orderRepository.save(order);
     }
 
