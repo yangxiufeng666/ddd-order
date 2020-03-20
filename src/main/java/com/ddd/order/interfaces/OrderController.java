@@ -3,10 +3,13 @@ package com.ddd.order.interfaces;
 import com.ddd.order.application.command.OrderCmdService;
 import com.ddd.order.application.command.cmd.ChangeAddressDetailCmd;
 import com.ddd.order.application.command.cmd.CreateOrderCmd;
+import com.ddd.order.application.query.OrderQueryService;
+import com.ddd.order.application.query.presentation.OrderRepresentation;
+import com.ddd.order.application.query.presentation.OrderWithItemsRepresentation;
 import com.ddd.order.infrastructure.common.Response;
+import com.ddd.order.infrastructure.common.SingleResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +25,13 @@ import javax.validation.Valid;
 @Slf4j
 public class OrderController {
     private final OrderCmdService orderCmdService;
+    private final OrderQueryService orderQueryService;
 
-    public OrderController(OrderCmdService orderCmdService) {
+    public OrderController(OrderCmdService orderCmdService, OrderQueryService orderQueryService) {
         this.orderCmdService = orderCmdService;
+        this.orderQueryService = orderQueryService;
     }
+
     @ApiOperation("创建订单")
     @PostMapping("create")
     public Response createOrder(@RequestBody @Valid CreateOrderCmd command){
@@ -37,5 +43,15 @@ public class OrderController {
     public Response changeAddressDetail(@PathVariable("orderId") String orderId, @RequestBody @Valid ChangeAddressDetailCmd command){
         orderCmdService.changeAddressDetail(orderId, command);
         return Response.buildSuccess();
+    }
+    @ApiOperation("获取订单信息")
+    @GetMapping("/{orderId}")
+    public SingleResponse<OrderRepresentation> getOrder(@PathVariable("orderId") String orderId){
+        return SingleResponse.of(orderQueryService.getOrder(orderId));
+    }
+    @ApiOperation("获取订单详细信息")
+    @GetMapping("withItem/{orderId}")
+    public SingleResponse<OrderWithItemsRepresentation> getOrderWithItems(@PathVariable("orderId") String orderId){
+        return SingleResponse.of(orderQueryService.getOrderWithItems(orderId));
     }
 }

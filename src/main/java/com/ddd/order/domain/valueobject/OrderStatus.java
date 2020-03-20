@@ -21,9 +21,9 @@ public enum OrderStatus {
     CANCELED(3);
 
     @Getter
-    private final int orderStatus;
+    private final int code;
 
-    OrderStatus(int orderStatus) {
-        this.orderStatus = orderStatus;
+    OrderStatus(int code) {
+        this.code = code;
     }
 }

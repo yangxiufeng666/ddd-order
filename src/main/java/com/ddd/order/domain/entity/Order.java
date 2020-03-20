@@ -5,6 +5,7 @@ import com.ddd.order.infrastructure.common.AggregateRoot;
 import com.ddd.order.domain.valueobject.Address;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -19,22 +20,22 @@ public class Order extends AggregateRoot {
     private int totalPrice;
     private Address address;
     private List<OrderItem> items = newArrayList();
-    private Instant createTime;
+    private Date createTime;
     private OrderStatus orderStatus;
 
     public Order() {
     }
 
-    public Order(String id, Address address, List<OrderItem> items) {
+    public Order(String id, Address address, List<OrderItem> items, Date createTime) {
         this.id = id;
         this.address = address;
         this.items.addAll(items);
-        this.createTime = Instant.now();
+        this.createTime = createTime;
         this.orderStatus = OrderStatus.CREATED;
         this.totalPrice = calculateTotalPrice(this.items);
     }
     public static Order create(String id, Address address, List<OrderItem> items){
-        return new Order(id, address, items);
+        return new Order(id, address, items, new Date());
     }
     private int calculateTotalPrice(List<OrderItem> items){
         return items.stream()
@@ -63,7 +64,7 @@ public class Order extends AggregateRoot {
         return items;
     }
 
-    public Instant getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 

@@ -22,11 +22,11 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     private OrderDOMapper orderMapper;
 
-    private OrderItemDOMapper orderItemDOMapper;
+    private OrderItemDOMapper orderItemMapper;
 
     public OrderRepositoryImpl(OrderDOMapper orderMapper, OrderItemDOMapper orderItemDOMapper) {
         this.orderMapper = orderMapper;
-        this.orderItemDOMapper = orderItemDOMapper;
+        this.orderItemMapper = orderItemDOMapper;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public void saveItem(List<OrderItem> items) {
         List<OrderItemDO> itemDOs = OrderItemConverter.toOrderItemDO(items);
-        itemDOs.forEach(orderItemDO -> orderItemDOMapper.insert(orderItemDO));
+        itemDOs.forEach(orderItemDO -> orderItemMapper.insert(orderItemDO));
     }
 
     @Override

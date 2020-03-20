@@ -1,4 +1,4 @@
-package com.ddd.order.application.query;
+package com.ddd.order.application.query.qry;
 
 /**
  * @author Mr.Yangxiufeng

@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: order
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh_CN
+    time-zone: GMT+8
   datasource:
     url: jdbc:mysql://10.10.11.15:3306/ddd-order?characterEncoding=utf-8&serverTimezone=GMT%2B8
     username: root
