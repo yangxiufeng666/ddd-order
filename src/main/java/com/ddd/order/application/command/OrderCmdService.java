@@ -7,9 +7,7 @@ import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.factory.OrderFactory;
 import com.ddd.order.domain.repository.OrderRepository;
 import com.ddd.order.domain.service.OrderDomainService;
-import com.ddd.order.domain.service.OrderIdGenerator;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +26,6 @@ public class OrderCmdService {
 
     private OrderFactory orderFactory;
 
-    private OrderIdGenerator idGenerator;
-
     private OrderDomainService orderDomainService;
 
     public OrderCmdService(OrderRepository orderRepository, OrderFactory orderFactory, OrderDomainService orderDomainService) {
@@ -38,18 +34,15 @@ public class OrderCmdService {
         this.orderDomainService = orderDomainService;
     }
 
-    @Autowired
-    public void setIdGenerator(OrderIdGenerator idGenerator) {
-        this.idGenerator = idGenerator;
-    }
-
     @Transactional(rollbackFor = Exception.class)
     public void createOrder(CreateOrderCmd cmd){
-        String orderId = idGenerator.generate();
-        List<OrderItem> items = cmd.getItems().stream()
-                .map(item -> OrderItem.create(item.getProductId(), item.getCount(), item.getItemPrice(), orderId))
+        List<OrderItem> orderItemList = cmd.getItems()
+                .stream()
+                .map(orderItemCmd -> OrderItem.create(orderItemCmd.getProductId(),
+                        orderItemCmd.getCount(),
+                        orderItemCmd.getItemPrice()))
                 .collect(Collectors.toList());
-        Order order = Order.create(orderId, cmd.getAddress(), items);
+        Order order = orderFactory.create(cmd.getAddress(),orderItemList);
         orderDomainService.save(order);
     }
     @Transactional(rollbackFor = Exception.class)

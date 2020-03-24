@@ -24,6 +24,9 @@ public class OrderItem extends Entity {
     public static OrderItem create(String productId, int count, int itemPrice, String orderId){
         return new OrderItem(productId, count, itemPrice, orderId);
     }
+    public static OrderItem create(String productId, int count, int itemPrice){
+        return new OrderItem(productId, count, itemPrice, null);
+    }
     public int totalPrice(){
         return itemPrice * count;
     }
