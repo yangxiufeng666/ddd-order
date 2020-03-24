@@ -21,6 +21,16 @@ public class OrderItemConverter {
         }).collect(Collectors.toList());
         return itemDOs;
     }
+
+    public static OrderItemDO toOrderItemDO(OrderItem item){
+        OrderItemDO itemDO = new OrderItemDO();
+        itemDO.setItemCount(item.getCount());
+        itemDO.setProductId(item.getProductId());
+        itemDO.setItemPrice(item.getItemPrice());
+        itemDO.setOrderId(item.getOrderId());
+        return itemDO;
+    }
+
     public static List<OrderItem> toOrderItem(List<OrderItemDO> itemDOs){
         List<OrderItem> items = itemDOs.stream().map(it ->
              OrderItem.create(it.getProductId(), it.getItemCount(), it.getItemPrice(), it.getOrderId())

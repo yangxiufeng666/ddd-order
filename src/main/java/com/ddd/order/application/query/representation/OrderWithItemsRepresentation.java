@@ -1,4 +1,4 @@
-package com.ddd.order.application.query.presentation;
+package com.ddd.order.application.query.representation;
 
 import java.util.Date;
 import java.util.List;
@@ -8,6 +8,8 @@ import java.util.List;
  * @date 2020-03-19 17:48
  */
 public class OrderWithItemsRepresentation extends OrderRepresentation{
+
+    private static final long serialVersionUID = 1L;
 
     private List<OrderItemRepresentation> items;
 

@@ -41,9 +41,9 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public void saveItem(List<OrderItem> items) {
-        List<OrderItemDO> itemDOs = OrderItemConverter.toOrderItemDO(items);
-        itemDOs.forEach(orderItemDO -> orderItemMapper.insert(orderItemDO));
+    public void saveItem(OrderItem item) {
+        OrderItemDO itemDO = OrderItemConverter.toOrderItemDO(item);
+        orderItemMapper.insert(itemDO);
     }
 
     @Override

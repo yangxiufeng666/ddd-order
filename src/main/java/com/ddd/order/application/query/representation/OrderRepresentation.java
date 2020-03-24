@@ -1,6 +1,6 @@
-package com.ddd.order.application.query.presentation;
+package com.ddd.order.application.query.representation;
 
-import com.ddd.order.infrastructure.common.DTO;
+import com.ddd.order.infrastructure.common.Representation;
 
 import java.util.Date;
 
@@ -8,7 +8,9 @@ import java.util.Date;
  * @author Mr.Yangxiufeng
  * @date 2020-03-19 17:02
  */
-public class OrderRepresentation extends DTO {
+public class OrderRepresentation extends Representation {
+    private static final long serialVersionUID = 1L;
+
     private String orderId;
     private int totalPrice;
     private int orderStatus;

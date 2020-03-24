@@ -6,6 +6,7 @@ import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.factory.OrderFactory;
 import com.ddd.order.domain.repository.OrderRepository;
+import com.ddd.order.domain.service.OrderDomainService;
 import com.ddd.order.domain.service.OrderIdGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,14 @@ public class OrderCmdService {
 
     private OrderIdGenerator idGenerator;
 
-    public OrderCmdService(OrderRepository orderRepository, OrderFactory orderFactory) {
+    private OrderDomainService orderDomainService;
+
+    public OrderCmdService(OrderRepository orderRepository, OrderFactory orderFactory, OrderDomainService orderDomainService) {
         this.orderRepository = orderRepository;
         this.orderFactory = orderFactory;
+        this.orderDomainService = orderDomainService;
     }
+
     @Autowired
     public void setIdGenerator(OrderIdGenerator idGenerator) {
         this.idGenerator = idGenerator;
@@ -45,8 +50,7 @@ public class OrderCmdService {
                 .map(item -> OrderItem.create(item.getProductId(), item.getCount(), item.getItemPrice(), orderId))
                 .collect(Collectors.toList());
         Order order = Order.create(orderId, cmd.getAddress(), items);
-        orderRepository.save(order);
-        orderRepository.saveItem(order.getItems());
+        orderDomainService.save(order);
     }
     @Transactional(rollbackFor = Exception.class)
     public void changeAddressDetail(String orderId, ChangeAddressDetailCmd command){

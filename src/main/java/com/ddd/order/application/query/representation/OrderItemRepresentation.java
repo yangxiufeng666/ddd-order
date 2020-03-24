@@ -1,10 +1,15 @@
-package com.ddd.order.application.query.presentation;
+package com.ddd.order.application.query.representation;
+
+import com.ddd.order.infrastructure.common.Representation;
 
 /**
  * @author Mr.Yangxiufeng
  * @date 2020-03-19 17:49
  */
-public class OrderItemRepresentation {
+public class OrderItemRepresentation extends Representation {
+
+    private static final long serialVersionUID = 1L;
+
     private String productId;
 
     private int count;

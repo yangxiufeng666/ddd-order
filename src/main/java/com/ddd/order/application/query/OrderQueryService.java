@@ -1,9 +1,8 @@
 package com.ddd.order.application.query;
 
-import com.ddd.order.application.query.presentation.OrderItemRepresentation;
-import com.ddd.order.application.query.presentation.OrderRepresentation;
-import com.ddd.order.application.query.presentation.OrderWithItemsRepresentation;
-import com.ddd.order.domain.converter.OrderItemConverter;
+import com.ddd.order.application.query.representation.OrderItemRepresentation;
+import com.ddd.order.application.query.representation.OrderRepresentation;
+import com.ddd.order.application.query.representation.OrderWithItemsRepresentation;
 import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.repository.OrderQueryRepository;
 import com.ddd.order.domain.repository.OrderRepository;
