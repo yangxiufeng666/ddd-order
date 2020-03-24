@@ -4,12 +4,13 @@ package com.ddd.order.infrastructure.common;
  * @author Mr.Yangxiufeng
  * @date 2020-03-19 9:41
  */
-public class SingleResponse<T> extends Response {
+public class ResponseWithData<T> extends Response {
 
+    private static final long serialVersionUID = 1L;
     private T data;
 
-    public static <T> SingleResponse<T> of(T data) {
-        SingleResponse<T> singleResponse = new SingleResponse<>();
+    public static <T> ResponseWithData<T> of(T data) {
+        ResponseWithData<T> singleResponse = new ResponseWithData<>();
         singleResponse.setSuccess(true);
         singleResponse.setData(data);
         return singleResponse;
@@ -23,16 +24,16 @@ public class SingleResponse<T> extends Response {
         this.data = data;
     }
 
-    public static SingleResponse buildFailure(String errCode, String errMessage) {
-        SingleResponse response = new SingleResponse();
+    public static ResponseWithData buildFailure(String errCode, String errMessage) {
+        ResponseWithData response = new ResponseWithData();
         response.setSuccess(false);
         response.setErrCode(errCode);
         response.setErrMessage(errMessage);
         return response;
     }
 
-    public static SingleResponse buildSuccess(){
-        SingleResponse response = new SingleResponse();
+    public static ResponseWithData buildSuccess(){
+        ResponseWithData response = new ResponseWithData();
         response.setSuccess(true);
         return response;
     }

@@ -7,7 +7,7 @@ import com.ddd.order.application.query.OrderQueryService;
 import com.ddd.order.application.query.presentation.OrderRepresentation;
 import com.ddd.order.application.query.presentation.OrderWithItemsRepresentation;
 import com.ddd.order.infrastructure.common.Response;
-import com.ddd.order.infrastructure.common.SingleResponse;
+import com.ddd.order.infrastructure.common.ResponseWithData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -46,12 +46,12 @@ public class OrderController {
     }
     @ApiOperation("获取订单信息")
     @GetMapping("/{orderId}")
-    public SingleResponse<OrderRepresentation> getOrder(@PathVariable("orderId") String orderId){
-        return SingleResponse.of(orderQueryService.getOrder(orderId));
+    public ResponseWithData<OrderRepresentation> getOrder(@PathVariable("orderId") String orderId){
+        return ResponseWithData.of(orderQueryService.getOrder(orderId));
     }
     @ApiOperation("获取订单详细信息")
     @GetMapping("withItem/{orderId}")
-    public SingleResponse<OrderWithItemsRepresentation> getOrderWithItems(@PathVariable("orderId") String orderId){
-        return SingleResponse.of(orderQueryService.getOrderWithItems(orderId));
+    public ResponseWithData<OrderWithItemsRepresentation> getOrderWithItems(@PathVariable("orderId") String orderId){
+        return ResponseWithData.of(orderQueryService.getOrderWithItems(orderId));
     }
 }
