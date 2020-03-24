@@ -4,16 +4,20 @@ import com.ddd.order.application.command.OrderCmdService;
 import com.ddd.order.application.command.cmd.ChangeAddressDetailCmd;
 import com.ddd.order.application.command.cmd.CreateOrderCmd;
 import com.ddd.order.application.query.OrderQueryService;
+import com.ddd.order.application.query.qry.OrderListQry;
 import com.ddd.order.application.query.representation.OrderRepresentation;
 import com.ddd.order.application.query.representation.OrderWithItemsRepresentation;
+import com.ddd.order.domain.representation.OrderListRepresentation;
 import com.ddd.order.infrastructure.common.Response;
 import com.ddd.order.infrastructure.common.ResponseWithData;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Mr.Yangxiufeng
@@ -54,4 +58,10 @@ public class OrderController {
     public ResponseWithData<OrderWithItemsRepresentation> getOrderWithItems(@PathVariable("orderId") String orderId){
         return ResponseWithData.of(orderQueryService.getOrderWithItems(orderId));
     }
+    @ApiOperation("获取订单列表")
+    @GetMapping("list")
+    public ResponseWithData<OrderListRepresentation> getOrderList(OrderListQry orderListQry){
+        return ResponseWithData.of(orderQueryService.listOrder(orderListQry));
+    }
+
 }

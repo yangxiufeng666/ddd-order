@@ -1,6 +1,8 @@
 package com.ddd.order.domain.repository;
 
+import com.ddd.order.application.query.qry.OrderListQry;
 import com.ddd.order.domain.entity.Order;
+import com.ddd.order.domain.representation.OrderListRepresentation;
 
 /**
  * @author Mr.Yangxiufeng
@@ -8,4 +10,5 @@ import com.ddd.order.domain.entity.Order;
  */
 public interface OrderQueryRepository {
     Order withItemById(String orderId);
+    OrderListRepresentation listOrder(OrderListQry qry);
 }

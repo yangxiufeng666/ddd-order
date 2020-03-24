@@ -1,13 +1,17 @@
 package com.ddd.order.application.query;
 
+import com.ddd.order.application.query.qry.OrderListQry;
 import com.ddd.order.application.query.representation.OrderItemRepresentation;
 import com.ddd.order.application.query.representation.OrderRepresentation;
 import com.ddd.order.application.query.representation.OrderWithItemsRepresentation;
 import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.repository.OrderQueryRepository;
 import com.ddd.order.domain.repository.OrderRepository;
+import com.ddd.order.domain.representation.OrderListRepresentation;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -40,5 +44,10 @@ public class OrderQueryService {
                     return item;
                 }).collect(Collectors.toList()));
         return representation;
+    }
+
+    public OrderListRepresentation listOrder(OrderListQry qry){
+        OrderListRepresentation orderList = orderQueryRepository.listOrder(qry);
+        return orderList;
     }
 }

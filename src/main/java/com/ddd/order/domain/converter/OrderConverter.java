@@ -9,6 +9,7 @@ import com.ddd.order.infrastructure.repository.dataobject.OrderItemDO;
 import com.google.common.collect.Lists;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Mr.Yangxiufeng
@@ -37,5 +38,12 @@ public class OrderConverter {
         return new Order(orderDO.getId(),
                 new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()),
                 OrderItemConverter.toOrderItem(itemDOs), orderDO.getCreateTime());
+    }
+
+    public static List<Order> toOrderList(List<OrderDO> orderDOList){
+        if (null == orderDOList){
+            return Lists.newArrayList();
+        }
+        return orderDOList.stream().map(orderDO -> toOrder(orderDO)).collect(Collectors.toList());
     }
 }
