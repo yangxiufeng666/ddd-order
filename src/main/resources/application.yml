@@ -24,5 +24,10 @@ spring:
       time-between-connect-error-millis: 60000
       min-evictable-idle-time-millis: 300000
   # graylog
+  task:
+    execution:
+      pool:
+        core-size: 1
+        max-size: 8
 mybatis:
   mapper-locations: classpath:mapper/*.xml

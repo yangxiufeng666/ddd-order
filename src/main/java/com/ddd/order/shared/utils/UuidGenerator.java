@@ -1,4 +1,4 @@
-package com.ddd.order.infrastructure.utils;
+package com.ddd.order.shared.utils;
 
 import java.nio.ByteBuffer;
 import java.util.Base64;

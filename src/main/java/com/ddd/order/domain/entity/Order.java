@@ -34,9 +34,23 @@ public class Order extends AggregateRoot {
         this.orderStatus = OrderStatus.CREATED;
         this.totalPrice = calculateTotalPrice(this.items);
     }
+
+    public Order(String id, int totalPrice, Address address, List<OrderItem> items, Date createTime, OrderStatus orderStatus) {
+        this.id = id;
+        this.totalPrice = totalPrice;
+        this.address = address;
+        this.items = items;
+        this.createTime = createTime;
+        this.orderStatus = orderStatus;
+    }
+
     public static Order create(String id, Address address, List<OrderItem> items){
         return new Order(id, address, items, new Date());
     }
+    public static Order create(String id, Address address, int totalPrice, int status, List<OrderItem> items, Date createTime){
+        return new Order(id,totalPrice, address, items, createTime, OrderStatus.of(status));
+    }
+
     private int calculateTotalPrice(List<OrderItem> items){
         return items.stream()
                 .map(OrderItem::totalPrice)

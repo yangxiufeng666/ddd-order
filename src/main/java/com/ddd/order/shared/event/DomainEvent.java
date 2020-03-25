@@ -1,6 +1,6 @@
 package com.ddd.order.shared.event;
 
-import com.ddd.order.infrastructure.utils.UuidGenerator;
+import com.ddd.order.shared.utils.UuidGenerator;
 
 import java.util.Date;
 

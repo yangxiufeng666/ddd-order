@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.ddd.order.infrastructure.utils.UuidGenerator.newUuid;
+import static com.ddd.order.shared.utils.UuidGenerator.newUuid;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 

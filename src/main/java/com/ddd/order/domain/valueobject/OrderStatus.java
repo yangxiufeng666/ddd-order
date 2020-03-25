@@ -26,4 +26,17 @@ public enum OrderStatus {
     OrderStatus(int code) {
         this.code = code;
     }
+
+    public static OrderStatus of(int value){
+        switch (value){
+            case 1:
+                return OrderStatus.CREATED;
+            case 2:
+                return OrderStatus.PAID;
+            case 3:
+                return OrderStatus.CANCELED;
+            default:
+                return null;
+        }
+    }
 }

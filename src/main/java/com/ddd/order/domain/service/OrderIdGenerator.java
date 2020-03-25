@@ -1,7 +1,7 @@
 package com.ddd.order.domain.service;
 
 import com.ddd.order.shared.DomainService;
-import com.ddd.order.infrastructure.utils.UuidGenerator;
+import com.ddd.order.shared.utils.UuidGenerator;
 import org.springframework.stereotype.Component;
 
 /**
