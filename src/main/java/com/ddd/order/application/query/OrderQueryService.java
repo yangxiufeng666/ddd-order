@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ *
+ * <p>查询可以直接引用DO对象</p>
  * @author Mr.Yangxiufeng
  * @date 2020-03-19 17:01
  */
