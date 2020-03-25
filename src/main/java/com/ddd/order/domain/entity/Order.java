@@ -1,10 +1,9 @@
 package com.ddd.order.domain.entity;
 
+import com.ddd.order.domain.valueobject.Address;
 import com.ddd.order.domain.valueobject.OrderStatus;
 import com.ddd.order.infrastructure.common.AggregateRoot;
-import com.ddd.order.domain.valueobject.Address;
 
-import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +15,7 @@ import static com.google.common.collect.Lists.newArrayList;
  */
 public class Order extends AggregateRoot {
 
+    private static final long serialVersionUID = 1L;
     private String id;
     private int totalPrice;
     private Address address;

@@ -1,6 +1,7 @@
 package com.ddd.order.domain.service;
 
 import com.ddd.order.domain.entity.Order;
+import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.repository.OrderRepository;
 import com.ddd.order.infrastructure.common.DomainService;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,12 @@ public class OrderDomainService implements DomainService {
         this.orderRepository = orderRepository;
     }
 
-    public void save(Order order){
+    public void save(Order order) {
         orderRepository.save(order);
-        order.getItems().forEach(orderItem -> orderRepository.saveItem(orderItem));
+        order.getItems().forEach(orderItem -> {
+            OrderItem item = OrderItem.create(orderItem.getProductId(), orderItem.getCount(), orderItem.getItemPrice(), order.getId());
+            orderRepository.saveItem(item);
+        });
     }
 
 }

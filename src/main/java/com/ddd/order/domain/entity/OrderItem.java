@@ -7,6 +7,7 @@ import com.ddd.order.infrastructure.common.Entity;
  * @date 2020-03-18 15:34
  */
 public class OrderItem extends Entity {
+    private static final long serialVersionUID = 1L;
     private String productId;
     private int count;
     private int itemPrice;
@@ -21,11 +22,11 @@ public class OrderItem extends Entity {
         this.itemPrice = itemPrice;
         this.orderId = orderId;
     }
-    public static OrderItem create(String productId, int count, int itemPrice, String orderId){
-        return new OrderItem(productId, count, itemPrice, orderId);
-    }
     public static OrderItem create(String productId, int count, int itemPrice){
         return new OrderItem(productId, count, itemPrice, null);
+    }
+    public static OrderItem create(String productId, int count, int itemPrice, String orderId){
+        return new OrderItem(productId, count, itemPrice, orderId);
     }
     public int totalPrice(){
         return itemPrice * count;
