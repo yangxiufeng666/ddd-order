@@ -1,7 +1,7 @@
 package com.ddd.order.domain.representation;
 
 import com.ddd.order.application.query.representation.OrderRepresentation;
-import com.ddd.order.infrastructure.common.Representation;
+import com.ddd.order.shared.Representation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

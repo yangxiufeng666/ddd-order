@@ -8,16 +8,14 @@ import com.ddd.order.application.query.qry.OrderListQry;
 import com.ddd.order.application.query.representation.OrderRepresentation;
 import com.ddd.order.application.query.representation.OrderWithItemsRepresentation;
 import com.ddd.order.domain.representation.OrderListRepresentation;
-import com.ddd.order.infrastructure.common.Response;
-import com.ddd.order.infrastructure.common.ResponseWithData;
-import com.github.pagehelper.PageInfo;
+import com.ddd.order.shared.Response;
+import com.ddd.order.shared.ResponseWithData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author Mr.Yangxiufeng

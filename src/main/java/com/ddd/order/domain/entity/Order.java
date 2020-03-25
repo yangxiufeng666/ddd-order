@@ -2,7 +2,7 @@ package com.ddd.order.domain.entity;
 
 import com.ddd.order.domain.valueobject.Address;
 import com.ddd.order.domain.valueobject.OrderStatus;
-import com.ddd.order.infrastructure.common.AggregateRoot;
+import com.ddd.order.shared.AggregateRoot;
 
 import java.util.Date;
 import java.util.List;

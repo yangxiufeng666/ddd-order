@@ -1,4 +1,4 @@
-package com.ddd.order.infrastructure.common;
+package com.ddd.order.shared;
 
 /**
  * @author Mr.Yangxiufeng

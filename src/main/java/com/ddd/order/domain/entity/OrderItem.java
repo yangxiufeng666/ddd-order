@@ -1,6 +1,6 @@
 package com.ddd.order.domain.entity;
 
-import com.ddd.order.infrastructure.common.Entity;
+import com.ddd.order.shared.Entity;
 
 /**
  * @author Mr.Yangxiufeng

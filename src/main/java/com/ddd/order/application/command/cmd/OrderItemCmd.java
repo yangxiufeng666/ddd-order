@@ -1,6 +1,6 @@
 package com.ddd.order.application.command.cmd;
 
-import com.ddd.order.infrastructure.common.Command;
+import com.ddd.order.shared.Command;
 import lombok.Data;
 
 import javax.validation.constraints.Min;

@@ -1,6 +1,6 @@
 package com.ddd.order.application.query.representation;
 
-import com.ddd.order.infrastructure.common.Representation;
+import com.ddd.order.shared.Representation;
 
 import java.util.Date;
 

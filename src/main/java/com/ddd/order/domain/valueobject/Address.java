@@ -1,6 +1,6 @@
 package com.ddd.order.domain.valueobject;
 
-import com.ddd.order.infrastructure.common.ValueObject;
+import com.ddd.order.shared.ValueObject;
 
 import javax.validation.constraints.NotBlank;
 

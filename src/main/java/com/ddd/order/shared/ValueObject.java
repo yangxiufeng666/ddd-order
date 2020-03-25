@@ -1,4 +1,4 @@
-package com.ddd.order.infrastructure.common;
+package com.ddd.order.shared;
 
 import java.io.Serializable;
 
