@@ -1,6 +1,5 @@
-package com.ddd.order.infrastructure.exception;
+package com.ddd.order.shared.exception;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;
@@ -13,6 +12,7 @@ import static java.util.Collections.unmodifiableMap;
  * @author Mr.Yangxiufeng
  */
 public abstract class AppException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
     private final ErrorCode code;
     private final Map<String, Object> data = newHashMap();
 

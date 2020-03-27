@@ -1,23 +1,16 @@
-package com.ddd.order.infrastructure.exception;
+package com.ddd.order.shared.exception;
 
 import org.springframework.http.HttpStatus;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 /**
  * @author Mr.Yangxiufeng
  * @date 2020-03-19 13:42
  */
-public enum  ErrorCode {
+public enum CommonErrorCode implements ErrorCode{
     /**
-     * 没有找到订单
+     * 没有找到
      */
-    ORDER_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "没有找到订单"),
-    /**
-     * 没有找到产品
-     */
-    PRODUCT_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "没有找到产品"),
+    NOT_FOUND(HttpStatus.NOT_FOUND.value(), "没有找到"),
     /**
      * 请求数据格式验证失败
      */
@@ -25,22 +18,30 @@ public enum  ErrorCode {
     /**
      * 系统错误
      */
-    SYSTEM_ERROR(INTERNAL_SERVER_ERROR.value(), "系统错误");
+    SYSTEM_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value(), "系统错误");
 
     private int status;
 
     private String message;
 
-    ErrorCode(int status, String message) {
+    CommonErrorCode(int status, String message) {
         this.status = status;
         this.message = message;
     }
 
+    @Override
     public int getStatus() {
         return status;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public String getCode() {
+        return this.name();
+    }
+
 }

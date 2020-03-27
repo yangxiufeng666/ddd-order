@@ -1,4 +1,4 @@
-package com.ddd.order.infrastructure.exception;
+package com.ddd.order.shared.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
     @ResponseBody
-    public ResponseEntity<ErrorRepresentation> handleInvalidRequest(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ErrorResponse handleInvalidRequest(MethodArgumentNotValidException ex, HttpServletRequest request) {
         String path = request.getRequestURI();
 
         Map<String, Object> error = ex.getBindingResult().getFieldErrors().stream()
@@ -35,22 +35,22 @@ public class GlobalExceptionHandler {
                 }));
 
         log.error("Validation error for [{}]:{}", ex.getParameter().getParameterType().getName(), error);
-        ErrorRepresentation representation = ErrorRepresentation.from(ErrorDetail.from(new RequestValidationException(error), path));
-        return new ResponseEntity<>(representation, new HttpHeaders(), HttpStatus.valueOf(representation.status()));
+        ErrorResponse representation = new ErrorResponse(new RequestValidationException(error), path);
+        return representation;
     }
     @ExceptionHandler(AppException.class)
     @ResponseBody
-    public ResponseEntity<?> handleAppException(AppException ex, HttpServletRequest request) {
+    public ErrorResponse handleAppException(AppException ex, HttpServletRequest request) {
         log.error("App error:", ex);
-        ErrorRepresentation representation = ErrorRepresentation.from(ErrorDetail.from(ex, request.getRequestURI()));
-        return new ResponseEntity<>(representation, new HttpHeaders(), HttpStatus.valueOf(representation.status()));
+        ErrorResponse representation = new ErrorResponse(ex, request.getRequestURI());
+        return representation;
     }
     @ExceptionHandler(Throwable.class)
     @ResponseBody
     public ResponseEntity<?> handleGeneralException(Throwable ex, HttpServletRequest request) {
         String path = request.getRequestURI();
         log.error("Error occurred while access[{}]:", path, ex);
-        ErrorRepresentation representation = ErrorRepresentation.from(ErrorDetail.from(new SystemException(ex), path));
-        return new ResponseEntity<>(representation, new HttpHeaders(), HttpStatus.valueOf(representation.status()));
+        ErrorResponse representation = new ErrorResponse(new SystemException(ex), path);
+        return new ResponseEntity(representation, new HttpHeaders(), HttpStatus.valueOf(representation.httpStatus()));
     }
 }

@@ -5,6 +5,7 @@ import com.ddd.order.domain.converter.OrderItemConverter;
 import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.repository.OrderRepository;
+import com.ddd.order.infrastructure.exception.OrderNotFoundException;
 import com.ddd.order.infrastructure.repository.dataobject.OrderDO;
 import com.ddd.order.infrastructure.repository.dataobject.OrderItemDO;
 import com.ddd.order.infrastructure.repository.mapper.OrderDOMapper;
@@ -47,6 +48,9 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public Order byId(String orderId) {
         OrderDO orderDO = orderMapper.selectByPrimaryKey(orderId);
+//        if (null == orderDO){
+//            throw new OrderNotFoundException(orderId);
+//        }
         Order order = OrderConverter.toOrder(orderDO);
         return order;
     }

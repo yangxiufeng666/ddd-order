@@ -10,7 +10,7 @@ import java.util.List;
  * @author Mr.Yangxiufeng
  * @date 2020-03-25 11:16
  */
-public abstract class DomainEventAggregateRootAware extends AggregateRoot {
+public abstract class DomainEventAwareAggregateRoot extends AggregateRoot {
     private static final long serialVersionUID = 1L;
     private List<DomainEvent> events = Lists.newArrayList();
 
@@ -20,5 +20,9 @@ public abstract class DomainEventAggregateRootAware extends AggregateRoot {
 
     public List<DomainEvent> getEvents() {
         return Collections.synchronizedList(events);
+    }
+
+    public void clearEvent(){
+        events.clear();
     }
 }

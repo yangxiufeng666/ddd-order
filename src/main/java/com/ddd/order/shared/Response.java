@@ -1,6 +1,8 @@
 package com.ddd.order.shared;
 
+import com.ddd.order.infrastructure.log.RequestIdMdcFilter;
 import lombok.Data;
+import org.slf4j.MDC;
 
 /**
  * @author Mr.Yangxiufeng
@@ -16,6 +18,12 @@ public class Response extends DTO {
 
     private String errMessage;
 
+    private String requestId;
+
+    public Response() {
+        this.requestId = MDC.get(RequestIdMdcFilter.REQUEST_ID);
+    }
+
     public static Response buildFailure(String errCode, String errMessage) {
         Response response = new Response();
         response.setSuccess(false);
@@ -29,4 +37,5 @@ public class Response extends DTO {
         response.setSuccess(true);
         return response;
     }
+
 }

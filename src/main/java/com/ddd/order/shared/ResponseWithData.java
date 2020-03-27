@@ -9,6 +9,10 @@ public class ResponseWithData<T> extends Response {
     private static final long serialVersionUID = 1L;
     private T data;
 
+    public ResponseWithData() {
+        super();
+    }
+
     public static <T> ResponseWithData<T> of(T data) {
         ResponseWithData<T> singleResponse = new ResponseWithData<>();
         singleResponse.setSuccess(true);
