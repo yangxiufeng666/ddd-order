@@ -28,13 +28,28 @@ public class OrderConverter {
         return target;
     }
     public static Order toOrder(OrderDO orderDO){
-        return Order.create(orderDO.getId(),
-                new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()),
-                orderDO.getTotalPrice(), orderDO.getOrderStatus(),Lists.newArrayList(), orderDO.getCreateTime());
+        return new Order.Builder()
+                .setId(orderDO.getId())
+                .setCreateTime(orderDO.getCreateTime())
+                .setAddress(new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()))
+                .setOrderStatus(orderDO.getOrderStatus())
+                .setTotalPrice(orderDO.getTotalPrice())
+                .build();
+//        return Order.create(orderDO.getId(),
+//                new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()),
+//                orderDO.getTotalPrice(), orderDO.getOrderStatus(),Lists.newArrayList(), orderDO.getCreateTime());
     }
     public static Order toOrderWithItems(OrderDO orderDO, List<OrderItemDO> itemDOs){
-        return new Order(orderDO.getId(),
-                new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()),
-                OrderItemConverter.toOrderItem(itemDOs), orderDO.getCreateTime());
+        return new Order.Builder()
+                .setId(orderDO.getId())
+                .setCreateTime(orderDO.getCreateTime())
+                .setAddress(new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()))
+                .setOrderStatus(orderDO.getOrderStatus())
+                .setTotalPrice(orderDO.getTotalPrice())
+                .setItems(OrderItemConverter.toOrderItem(itemDOs))
+                .build();
+//        return new Order(orderDO.getId(),
+//                new Address(orderDO.getProvince(), orderDO.getCity(), orderDO.getDetailAddress()),
+//                OrderItemConverter.toOrderItem(itemDOs), orderDO.getCreateTime());
     }
 }

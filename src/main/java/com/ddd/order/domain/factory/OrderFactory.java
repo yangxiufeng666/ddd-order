@@ -4,8 +4,10 @@ import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.service.OrderIdGenerator;
 import com.ddd.order.domain.valueobject.Address;
+import com.ddd.order.domain.valueobject.OrderStatus;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,8 +25,13 @@ public class OrderFactory {
 
     public Order create(Address address, List<OrderItem> orderItems){
         String orderId = idGenerator.generate();
-        Order order = Order.create(orderId, address, orderItems);
-        return order;
+        return new Order.Builder()
+                .setId(orderId)
+                .setAddress(address)
+                .setItems(orderItems)
+                .setOrderStatus(OrderStatus.CREATED.getCode())
+                .build();
+//        Order order = Order.create(orderId, address, orderItems);
+//        return order;
     }
-
 }
