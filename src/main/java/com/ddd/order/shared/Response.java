@@ -10,13 +10,18 @@ import org.slf4j.MDC;
  */
 @Data
 public class Response extends DTO {
+
     private static final long serialVersionUID = 1L;
+
+    public static final String DEFAULT_SUCCESS_CODE = "200";
+
+    public static final String DEFAULT_SUCCESS_MESSAGE = "操作成功";
 
     private boolean isSuccess;
 
-    private String errCode;
+    private String code = DEFAULT_SUCCESS_CODE;
 
-    private String errMessage;
+    private String message = DEFAULT_SUCCESS_MESSAGE;
 
     private String requestId;
 
@@ -27,8 +32,8 @@ public class Response extends DTO {
     public static Response buildFailure(String errCode, String errMessage) {
         Response response = new Response();
         response.setSuccess(false);
-        response.setErrCode(errCode);
-        response.setErrMessage(errMessage);
+        response.setCode(errCode);
+        response.setMessage(errMessage);
         return response;
     }
 

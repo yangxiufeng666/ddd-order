@@ -24,8 +24,8 @@ public class ErrorResponse extends Response {
     public ErrorResponse(AppException ex, String path) {
         super();
         this.error = ex.getCode();
-        this.setErrCode(String.valueOf(error.getStatus()));
-        this.setErrMessage(error.getMessage());
+        this.setCode(String.valueOf(error.getStatus()));
+        this.setMessage(error.getMessage());
         this.setSuccess(false);
         this.path = path;
         this.data.putAll(ex.getData());

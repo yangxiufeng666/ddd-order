@@ -31,8 +31,8 @@ public class ResponseWithData<T> extends Response {
     public static ResponseWithData buildFailure(String errCode, String errMessage) {
         ResponseWithData response = new ResponseWithData();
         response.setSuccess(false);
-        response.setErrCode(errCode);
-        response.setErrMessage(errMessage);
+        response.setCode(errCode);
+        response.setMessage(errMessage);
         return response;
     }
 
