@@ -1,6 +1,8 @@
 package com.ddd.order.domain.valueobject;
 
-import com.ddd.order.shared.ValueObject;
+
+
+import org.ddd.shared.core.ValueObject;
 
 import javax.validation.constraints.NotBlank;
 
@@ -9,7 +11,7 @@ import javax.validation.constraints.NotBlank;
  * @author Mr.Yangxiufeng
  * @date 2020-03-18 15:35
  */
-public class Address extends ValueObject{
+public class Address extends ValueObject {
     @NotBlank(message = "省不能为空")
     private String province;
     @NotBlank(message = "市不能为空")

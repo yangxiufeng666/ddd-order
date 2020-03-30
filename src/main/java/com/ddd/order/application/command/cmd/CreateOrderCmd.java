@@ -2,8 +2,8 @@ package com.ddd.order.application.command.cmd;
 
 
 import com.ddd.order.domain.valueobject.Address;
-import com.ddd.order.shared.Command;
 import lombok.Data;
+import org.ddd.shared.core.Command;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;

@@ -19,6 +19,8 @@
         <druid-starter.version>1.1.16</druid-starter.version>
         <swagger2.version>2.9.2</swagger2.version>
         <pageHelper-starter.version>1.2.10</pageHelper-starter.version>
+        <ddd-shared-core.version>1.0-SNAPSHOT</ddd-shared-core.version>
+        <ddd-shared-web.version>1.0-SNAPSHOT</ddd-shared-web.version>
     </properties>
 
     <dependencies>
@@ -71,6 +73,17 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ddd.shared</groupId>
+            <artifactId>ddd-shared-core</artifactId>
+            <version>${ddd-shared-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ddd.shared</groupId>
+            <artifactId>ddd-shared-web</artifactId>
+            <version>${ddd-shared-web.version}</version>
         </dependency>
 
         <dependency>

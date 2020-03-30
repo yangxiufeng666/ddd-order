@@ -1,6 +1,7 @@
 package com.ddd.order.domain.event;
 
-import com.ddd.order.shared.event.DomainEvent;
+
+import org.ddd.shared.core.event.DomainEvent;
 
 /**
  * @author Mr.Yangxiufeng

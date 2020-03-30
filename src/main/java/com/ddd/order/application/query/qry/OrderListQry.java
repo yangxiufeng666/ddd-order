@@ -1,7 +1,7 @@
 package com.ddd.order.application.query.qry;
 
-import com.ddd.order.shared.Query;
 import lombok.Data;
+import org.ddd.shared.core.Query;
 
 import javax.validation.constraints.NotNull;
 

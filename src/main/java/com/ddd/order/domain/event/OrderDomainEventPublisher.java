@@ -1,9 +1,9 @@
 package com.ddd.order.domain.event;
 
-import com.ddd.order.shared.event.DomainEvent;
-import com.ddd.order.shared.event.DomainEventPublisher;
 import com.google.common.eventbus.EventBus;
 import lombok.extern.slf4j.Slf4j;
+import org.ddd.shared.core.event.DomainEvent;
+import org.ddd.shared.core.event.DomainEventPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Component;

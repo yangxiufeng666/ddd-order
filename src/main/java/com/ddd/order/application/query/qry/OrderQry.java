@@ -1,6 +1,7 @@
 package com.ddd.order.application.query.qry;
 
-import com.ddd.order.shared.Query;
+
+import org.ddd.shared.core.Query;
 
 /**
  * @author Mr.Yangxiufeng

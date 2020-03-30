@@ -1,6 +1,8 @@
 package com.ddd.order.domain.repository;
 
-import com.ddd.order.shared.event.DomainEvent;
+
+
+import org.ddd.shared.core.event.DomainEvent;
 
 import java.util.List;
 

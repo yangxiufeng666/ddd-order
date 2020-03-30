@@ -3,7 +3,7 @@ package com.ddd.order.domain.service;
 import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.entity.OrderItem;
 import com.ddd.order.domain.repository.OrderRepository;
-import com.ddd.order.shared.DomainService;
+import org.ddd.shared.core.DomainService;
 import org.springframework.stereotype.Service;
 
 /**

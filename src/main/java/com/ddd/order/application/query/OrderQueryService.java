@@ -8,10 +8,8 @@ import com.ddd.order.domain.entity.Order;
 import com.ddd.order.domain.repository.OrderQueryRepository;
 import com.ddd.order.domain.repository.OrderRepository;
 import com.ddd.order.domain.representation.OrderListRepresentation;
-import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**

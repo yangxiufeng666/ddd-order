@@ -5,7 +5,6 @@ import com.ddd.order.domain.valueobject.Address;
 import com.ddd.order.domain.valueobject.OrderStatus;
 import com.ddd.order.infrastructure.repository.dataobject.OrderDO;
 import com.ddd.order.infrastructure.repository.dataobject.OrderItemDO;
-import com.google.common.collect.Lists;
 
 import java.util.List;
 

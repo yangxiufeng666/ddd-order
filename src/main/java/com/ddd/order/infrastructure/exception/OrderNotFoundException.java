@@ -1,8 +1,8 @@
 package com.ddd.order.infrastructure.exception;
 
-import com.ddd.order.shared.exception.AppException;
-import com.ddd.order.shared.exception.CommonErrorCode;
 import com.google.common.collect.ImmutableMap;
+import org.ddd.shared.web.exception.AppException;
+import org.ddd.shared.web.exception.CommonErrorCode;
 
 /**
  * @author Mr.Yangxiufeng

@@ -12,7 +12,7 @@ class OrderApplicationTests {
     @Test
     void contextLoads() {
         try {
-            Class<?> classBook = Class.forName("com.android.peter.reflectdemo.Book");
+            Class<?> classBook = Class.forName("com.ddd.order.User");
             Method methodBook = classBook.getDeclaredMethod("declaredMethod",int.class);
             methodBook.setAccessible(true);
             Object objectBook = classBook.newInstance();

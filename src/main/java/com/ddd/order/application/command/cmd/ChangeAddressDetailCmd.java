@@ -1,6 +1,8 @@
 package com.ddd.order.application.command.cmd;
 
-import com.ddd.order.shared.Command;
+
+
+import org.ddd.shared.core.Command;
 
 import javax.validation.constraints.NotBlank;
 
